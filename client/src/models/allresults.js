@@ -23,6 +23,8 @@ AllResults.prototype = {
     this.results.forEach(function(result){
       if(result.hotels.length > 0){
         result.cheapestPackage = Math.floor(result.flightPrice) + Math.floor(result.hotels[0].nightlyPrice);
+      }else{
+          result.cheapestPackage = 0;
       }
     })
   },

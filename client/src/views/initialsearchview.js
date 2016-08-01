@@ -29,12 +29,14 @@ InitialSearchView.prototype = {
         }).then(function (arrayOfResults) {
           var allResults = new AllResultsObject();
           allResults.results = arrayOfResults
+          allResults.createCheapestPackage();
           console.log('all results:',allResults)
           //save locally.
+          localStorage.removeItem('lastSearch');
           localStorage.setItem('lastSearch', JSON.stringify(allResults));
-          var retrievedObject = JSON.parse(localStorage.getItem('allSearches')) || [];
-          retrievedObject.push(allResults);
-          localStorage.setItem('allSearches', JSON.stringify(retrievedObject));
+          // var retrievedObject = JSON.parse(localStorage.getItem('allSearches')) || [];
+          // retrievedObject.push(allResults);
+          // localStorage.setItem('allSearches', JSON.stringify(retrievedObject));
         });
     }.bind(this);
   },

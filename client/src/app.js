@@ -7,7 +7,6 @@ var InitialUserPositionView = require('./views/initialuserpositionview.js');
 var InitialUserPosition = require('./models/initialuserposition.js');
 var ResultBoxes = require('./views/allresultsview.js');
 
-
 var keys = {
   skyscannerApiKey: 'co301553792687403420764331127549',
   expediaApiKey: '49anVGknDW2Ck8ATFBRAAMQ0Ls75wphH'
@@ -17,8 +16,9 @@ window.onload = function(){
   setDates();
   //object loads here
   var allResults = new AllResultsObject();
-  var flightSearch = new FlightSearch()
-  var hotelSearch = new HotelSearch()
+  var flightSearch = new FlightSearch();
+  var hotelSearch = new HotelSearch();
+  var resultDisplay = new ResultBoxes();
   //event listeners here
   var initialSearchView = new InitialSearchView();
   initialSearchView.handleSearchClick(flightSearch, hotelSearch, keys);
@@ -26,8 +26,9 @@ window.onload = function(){
   var initialUserPosition = new InitialUserPosition();
    initialUserPosition.getUserLatLng();
   //area for Joe to play with
-  console.log(allResults)
-
+  allResults.populateFromLocal();
+  var testResults = JSON.parse(localStorage.getItem('lastSearch')) || [];
+  resultDisplay.allResults(testResults.results[0]);
   //area for ash to play with
 
 
